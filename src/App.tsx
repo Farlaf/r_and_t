@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Loader } from "./components/Loader";
+import { Product } from "./components/Product";
+import { useProducts } from "./hooks/products";
+import { ErrorLoading } from "./components/Error";
+import { Modal } from "./components/Modal";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { error, loading, products } = useProducts();
+
+    return (
+        <div className="container mx-auto max-w-2xl pt-5">
+            {error && <ErrorLoading er={error} />}
+            {loading && <Loader />}
+            {products.map((product) => (
+                <Product key={product.id} product={product} />
+            ))}
+
+            <Modal />
+        </div>
+    );
 }
 
 export default App;
