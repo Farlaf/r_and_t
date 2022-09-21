@@ -1,9 +1,9 @@
 import React from "react";
 
-interface ErrorLoadingProps {
-    er: string;
+interface ErrorMessageProps {
+    message: string;
 }
 
-export function ErrorLoading({ er }: ErrorLoadingProps) {
-    return <p className="text-center text-red-600">{er}</p>;
+export function ErrorMessage({ message }: ErrorMessageProps) {
+    return <p className="text-center text-red-600">{message}</p>;
 }
